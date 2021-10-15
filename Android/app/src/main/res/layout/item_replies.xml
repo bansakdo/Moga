@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/item_replies_reply_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:id="@+id/item_replies_user_img"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/ic_user"
+            android:background="@drawable/background_user_img"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
+                    <TextView
+                        android:id="@+id/item_replies_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="익명"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:id="@+id/imgReplyIsWriter"
+                        android:layout_width="50dp"
+                        android:layout_height="17dp"
+                        android:src="@drawable/ic_writer"
+                        android:visibility="visible"
+                        />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/item_replies_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="댓글 내용"
+                    android:textColor="@color/text1"
+                    android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/item_replies_wrt_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="방금 전"
+                android:textColor="@color/text2"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/item_replies_three_dots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_three_dots"
+        android:layout_gravity="right|top"
+        android:paddingTop="5dp"
+        android:paddingStart="10dp"
+        android:paddingBottom="10dp"
+        />
+
+</FrameLayout>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.gachon.moga.NoticeDetailActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarNoticeDetail"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/AppTheme.Toolbar" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+
+            <ImageButton
+                android:id="@+id/imageButton_noticeDetail_toolbarBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_arrow_back"
+                android:background="@android:color/transparent"
+                android:layout_marginRight="10dp"
+                />
+            <TextView
+                android:id="@+id/textView_noticeDetail_toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+            <ImageButton
+                android:id="@+id/imageButton_noticeDetail_openInBrowser"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_open_in_browser"
+                android:background="@android:color/transparent"
+                android:paddingEnd="20dp"
+                android:paddingStart="10dp"
+                />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarNoticeDetail"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        >
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="*"
+            android:layout_margin="7dp"
+            >
+            <TableRow
+                android:layout_width="match_parent"
+                android:minHeight="50dp"
+                android:layout_marginBottom="10dp"
+                >
+                <TextView
+                    android:id="@+id/tvNoticeDetailTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="제목"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_span="4"
+                    />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="작성일"
+                    android:textColor="@color/text1"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/tvNoticeDetailTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="2020-12-12 09:04:00"
+                    android:textSize="13sp"
+                    android:textColor="@color/text1"
+                    android:layout_gravity="left"
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="조회수"
+                    android:textSize="14sp"
+                    android:textColor="@color/text1"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:id="@+id/tvNoticeDetailCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="100"
+                    android:textSize="14sp"
+                    android:textColor="@color/text1"
+                    android:layout_gravity="left"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                >
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:text="첨부파일"-->
+<!--                    android:textSize="14dp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:gravity="center"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    />-->
+                <LinearLayout
+                    android:id="@+id/llNoticeFile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="10dp"
+                    android:layout_span="4"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp">
+
+                </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                >
+                <View
+                    android:layout_span="4"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="?android:attr/listDivider"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                    <WebView
+                        android:id="@+id/wvNoticeDetailContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0dp"
+                        android:layout_span="4"/>
+            </TableRow>
+
+
+        </TableLayout>
+
+    </ScrollView>
+
+
+
+<!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--            android:id="@+id/bottomNavNoticeDetail"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:itemIconTint="@color/bottom_navigation_selector"-->
+<!--            app:itemTextColor="@color/bottom_navigation_selector"-->
+<!--            android:background="@color/white"-->
+<!--            app:labelVisibilityMode="labeled"-->
+<!--            app:menu="@menu/menu_bottomnavigationview" />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gachon.moga.AgreementTermsActivity">
+
+    <TextView
+        android:id="@+id/tv_agreement_terms_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_agreement_terms_service_title"
+        android:text="서비스이용약관 및\n개인정보처리방침 동의"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+    />
+
+    <TextView
+        android:id="@+id/tv_agreement_terms_service_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="서비스이용약관"
+        android:textColor="@color/BLACK"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_agreement_terms_title"
+        app:layout_constraintBottom_toTopOf="@+id/scrollview_agreement_terms_service"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview_agreement_terms_service"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_agreement_terms_service_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/tv_agreement_terms_service_title"
+        app:layout_constraintBottom_toTopOf="@+id/ll_agreement_terms_service"
+        android:layout_marginEnd="20dp"
+        android:layout_marginVertical="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/terms_service"
+                />
+
+            </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_agreement_terms_service"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/btn_agreement_terms_next"
+        app:layout_constraintEnd_toEndOf="@+id/btn_agreement_terms_next"
+        app:layout_constraintTop_toBottomOf="@+id/scrollview_agreement_terms_service"
+        app:layout_constraintBottom_toTopOf="@+id/tv_agreement_terms_personal_title"
+        android:layout_marginVertical="0dp"
+        android:gravity="center_vertical"
+        >
+        <CheckBox
+            android:id="@+id/chk_agreement_terms_service"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/tv_agreement_terms_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="서비스 이용약관 동의"
+            android:textSize="15sp"
+            android:paddingStart="10dp"
+            android:textColor="@color/BLACK"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_agreement_terms_personal_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="개인정보처리방침"
+        android:textColor="@color/BLACK"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/ll_agreement_terms_service"
+        app:layout_constraintBottom_toTopOf="@+id/scrollview_agreement_terms_personal"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        />
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview_agreement_terms_personal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_agreement_terms_personal_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/tv_agreement_terms_personal_title"
+        app:layout_constraintBottom_toTopOf="@+id/ll_agreement_terms_personal"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginEnd="20dp"
+        android:layout_marginVertical="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/terms_personal"
+                />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:id="@+id/ll_agreement_terms_personal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/btn_agreement_terms_next"
+        app:layout_constraintEnd_toEndOf="@+id/btn_agreement_terms_next"
+        app:layout_constraintTop_toBottomOf="@+id/scrollview_agreement_terms_personal"
+        app:layout_constraintBottom_toTopOf="@+id/ll_agreement_terms_checking_all"
+        app:layout_constraintVertical_bias="1"
+        android:layout_marginVertical="0dp"
+        android:gravity="center_vertical"
+        >
+        <CheckBox
+            android:id="@+id/chk_agreement_terms_personal"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            />
+        <TextView
+            android:id="@+id/tv_agreement_terms_personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="개인정보처리방 동의"
+            android:textSize="15sp"
+            android:paddingStart="10dp"
+            android:textColor="@color/BLACK"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_agreement_terms_checking_all"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/btn_agreement_terms_next"
+        app:layout_constraintEnd_toEndOf="@+id/btn_agreement_terms_next"
+        app:layout_constraintBottom_toTopOf="@+id/btn_agreement_terms_next"
+        app:layout_constraintTop_toBottomOf="@+id/ll_agreement_terms_personal"
+        app:layout_constraintVertical_bias="1"
+        android:layout_marginVertical="20dp"
+        android:gravity="center_vertical"
+        >
+        <CheckBox
+            android:id="@+id/chk_agreement_terms_all"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            />
+        <TextView
+            android:id="@+id/tv_agreement_terms_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전체 동의"
+            android:textSize="15sp"
+            android:paddingStart="10dp"
+            android:textColor="@color/BLACK"
+            />
+    </LinearLayout>
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_agreement_terms_next"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="15dp"
+        android:text="다음"
+        android:textColor="@color/WHITE"
+        android:textSize="14sp"
+        app:layout_constraintWidth_percent="0.8"
+        android:background="@drawable/btn_lightgray"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

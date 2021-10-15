@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="시간표"
+        android:id="@+id/bottomNavigationTimeTable"
+        android:icon="@drawable/bottom_timetable"
+        />
+    <item
+        android:title="공지"
+        android:id="@+id/bottomNavigationNotice"
+        android:icon="@drawable/bottom_notice"/>
+    <item
+        android:title="게시판"
+        android:id="@+id/bottomNavigationBoard"
+        android:icon="@drawable/bottom_board"/>
+    <item
+        android:title="알림"
+        android:id="@+id/bottomNavigationNotification"
+        android:icon="@drawable/bottom_notification"/>
+    <item
+        android:title="내 정보"
+        android:id="@+id/bottomNavigationMyPage"
+        android:icon="@drawable/bottom_mypage"/>
+</menu>
