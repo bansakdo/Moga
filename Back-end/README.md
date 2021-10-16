@@ -1,6 +1,7 @@
-# 가천인의 커뮤니티, 모여라가천 - MOGA!
+# OO인의 커뮤니티, MOGA!
 
-![1-2_512](https://user-images.githubusercontent.com/53803882/104343381-37a82880-553f-11eb-8acd-2f874fa70995.png)
+![104343381-37a82880-553f-11eb-8acd-2f874fa70995](https://user-images.githubusercontent.com/49244233/137573422-baff9191-6735-4c10-941d-090bfdb820d1.png)
+
 
 ## [ Service ]
 
@@ -24,7 +25,7 @@
 **'MOGA'에서는 나와 같은 수업을 듣는 학생들과 정보 공유를 할 수 있는 소통의 장을 제공합니다.<br>
 우리 과의 공지사항을 한눈에 보고, 공지사항 알림과 수업 시작 알림까지!**</br>
 <br>
-<img src='https://user-images.githubusercontent.com/53803882/104345341-91115700-5541-11eb-9a8f-026c791db8f5.png' width='200px'/>
+<img src='https://user-images.githubusercontent.com/49244233/137573451-f60fc2a5-ad5c-4ca1-952c-71031033fb3d.png' width='200px'/>
 <img src='https://user-images.githubusercontent.com/53803882/104345332-8eaefd00-5541-11eb-9a78-1d29dfc66b53.png' width='200px'/>
 <img src='https://user-images.githubusercontent.com/53803882/104344730-e26d1680-5540-11eb-9211-56b26fc2b46f.png' width='200px'/>
 <img src='https://user-images.githubusercontent.com/53803882/104344826-fca6f480-5540-11eb-83ca-d73b136f1017.png' width='200px'/>
