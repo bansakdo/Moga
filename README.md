@@ -30,9 +30,10 @@
 <img src='https://user-images.githubusercontent.com/53803882/104344730-e26d1680-5540-11eb-9211-56b26fc2b46f.png' width='200px'/>
 <img src='https://user-images.githubusercontent.com/53803882/104344826-fca6f480-5540-11eb-83ca-d73b136f1017.png' width='200px'/>
 <img src='https://user-images.githubusercontent.com/53803882/104344879-0892b680-5541-11eb-8f02-1a098c25ebc0.png' width='200px'/>
-<img src='https://user-images.githubusercontent.com/53803882/104344867-0597c600-5541-11eb-931f-03eeae6b9e0a.png' width='200px'/>
+<img src='https://user-images.githubusercontent.com/49244233/137573833-6e74d4e4-20c1-4f18-beb1-8887d69bdcd4.png' width='200px'/>
 <img src='https://user-images.githubusercontent.com/53803882/104344871-06c8f300-5541-11eb-8975-74a21c763af9.png' width='200px'/>
 <img src='https://user-images.githubusercontent.com/53803882/104344874-07fa2000-5541-11eb-9f49-2654c533aa93.png' width='200px'/>
+
 
 ## [ System Architecture ]
 <img width="1956" alt="iShot2021-02-22 00 33 03" src="https://user-images.githubusercontent.com/53803882/108629953-b03ac700-74a5-11eb-9fc1-bd2b524627b1.png">
