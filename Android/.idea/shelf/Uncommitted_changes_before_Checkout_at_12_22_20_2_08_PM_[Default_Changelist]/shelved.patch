@@ -1,0 +1,169 @@
+Index: app/src/main/java/com/hfad/gamo/NotificationFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.hfad.gamo;\n\nimport android.content.SharedPreferences;\nimport android.os.Bundle;\n\nimport androidx.annotation.Nullable;\nimport androidx.appcompat.app.AppCompatActivity;\nimport androidx.appcompat.widget.Toolbar;\nimport androidx.fragment.app.Fragment;\nimport androidx.recyclerview.widget.LinearLayoutManager;\nimport androidx.recyclerview.widget.RecyclerView;\nimport androidx.swiperefreshlayout.widget.SwipeRefreshLayout;\n\nimport android.text.Html;\nimport android.util.Log;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.EditText;\nimport android.widget.ImageView;\n\nimport com.android.volley.Response;\nimport com.android.volley.toolbox.Volley;\nimport com.hfad.gamo.ClickedBoard.ClickedBoard_RecyclerAdapter;\n\nimport org.json.JSONArray;\nimport org.json.JSONException;\nimport org.json.JSONObject;\n\nimport java.io.BufferedReader;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.io.InputStreamReader;\nimport java.util.ArrayList;\nimport java.util.HashMap;\n\nimport static android.content.Context.MODE_PRIVATE;\nimport static com.hfad.gamo.DataIOKt.appConstantPreferences;\n\npublic class NotificationFragment extends Fragment {\n\n    private SharedPreferences prefs;\n    private String dept;\n    private Notification_RecyclerAdapter adapter;\n    private JSONArray responseJSONArray = new JSONArray();\n    private JSONObject responseJSONObject = new JSONObject();\n    private ImageView cancel_button_notification;\n    private EditText editText;\n\n    private RecyclerView recyclerView = null;\n    private SwipeRefreshLayout swipeContainer;\n    private VolleyForHttpMethod volley;\n    private String url;\n\n    private int one = 0;\n\n\n    private LoadingDialog loadingDialog;\n\n    @Override\n    public void onCreate(@Nullable Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n\n        prefs = this.getContext().getSharedPreferences(appConstantPreferences, MODE_PRIVATE);\n        dept = prefs.getString(\"department\", null);\n\n\n        volley = new VolleyForHttpMethod(Volley.newRequestQueue(this.getContext()));\n        url = \"http://112.148.161.36:17394/notice/read/0/컴퓨터공학과\";\n\n        volley.getJSONArray(url, new Response.Listener<JSONArray>() {\n            @Override\n            public void onResponse(JSONArray response) {\n                for (int i = 0; i < response.length(); i++) {\n                    try {\n                        responseJSONObject = response.getJSONObject(i);\n                        responseJSONArray.put(responseJSONObject);\n                    } catch (JSONException e) {\n                        e.printStackTrace();\n                    }\n                }\n                adapter.notifyDataSetChanged();\n            }\n        });\n\n\n\n\n\n    }\n\n    @Override\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\n                             Bundle savedInstanceState) {\n\n\n        loadingDialog = new LoadingDialog(getContext());\n        loadingDialog.show();\n\n\n\n        View view = inflater.inflate(R.layout.fragment_notification, container, false);\n        cancel_button_notification = view.findViewById(R.id.cancel_button_notification);\n        editText = view.findViewById(R.id.edit);\n\n        recyclerView = view.findViewById(R.id.recycler_notification);\n        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));\n        adapter = new Notification_RecyclerAdapter(responseJSONArray, dept);\n        recyclerView.setAdapter(adapter);\n\n        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipe_notification);\n\n        // Later!!\n        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {\n            @Override\n            public void onRefresh() {\n                /*int original_length = responseJSONArray.length();\n                int current_length = original_length;\n                for(int i = 0; i < original_length; i++) {\n                    responseJSONArray.remove(--current_length);\n                }\n\n                volley.getJSONArray(url, new Response.Listener<JSONArray>() {\n                    @Override\n                    public void onResponse(JSONArray response) {\n                        for (int i = 0; i < response.length(); i++) {\n                            try {\n                                responseJSONObject = response.getJSONObject(i);\n                                responseJSONArray.put(responseJSONObject);\n                            } catch (JSONException e) {\n                                e.printStackTrace();\n                            }\n                        }\n                        adapter.notifyDataSetChanged();\n                    }\n                });*/\n\n                swipeContainer.setRefreshing(false);\n            }\n        });\n\n        swipeContainer.setColorSchemeResources(R.color.indigo500);\n\n        ImageView search_button = view.findViewById(R.id.search_button);\n\n        search_button.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                url = \"http://112.148.161.36:17394/notice/read/0/컴퓨터공학과/\" + editText.getText().toString();\n                volley.getJSONArray(url, new Response.Listener<JSONArray>() {\n                    @Override\n                    public void onResponse(JSONArray response) {\n\n                        int original_length = responseJSONArray.length();\n                        int current_length = original_length;\n                        for (int i = 0; i < original_length; i++) {\n                            responseJSONArray.remove(--current_length);\n                        }\n\n                        for (int i = 0; i < response.length(); i++) {\n                            try {\n                                responseJSONObject = response.getJSONObject(i);\n                                responseJSONArray.put(responseJSONObject);\n                            } catch (JSONException e) {\n                                e.printStackTrace();\n                            }\n                        }\n                        adapter.notifyDataSetChanged();\n\n                        cancel_button_notification.setVisibility(View.VISIBLE);\n                    }\n                });\n            }\n        });\n\n        cancel_button_notification.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                int original_length = responseJSONArray.length();\n                int current_length = original_length;\n                for (int i = 0; i < original_length; i++) {\n                    responseJSONArray.remove(--current_length);\n                }\n\n                url = \"http://112.148.161.36:17394/notice/read/0/컴퓨터공학과\";\n\n                volley.getJSONArray(url, new Response.Listener<JSONArray>() {\n                    @Override\n                    public void onResponse(JSONArray response) {\n\n                        int original_length = responseJSONArray.length();\n                        int current_length = original_length;\n                        for (int i = 0; i < original_length; i++) {\n                            responseJSONArray.remove(--current_length);\n                        }\n\n                        for (int i = 0; i < response.length(); i++) {\n                            try {\n                                responseJSONObject = response.getJSONObject(i);\n                                responseJSONArray.put(responseJSONObject);\n                            } catch (JSONException e) {\n                                e.printStackTrace();\n                            }\n                        }\n                        adapter.notifyDataSetChanged();\n\n                        cancel_button_notification.setVisibility(View.GONE);\n                        editText.getText().clear();\n                    }\n                });\n\n            }\n        });\n\n        return view;\n    }\n\n    @Override\n    public void onActivityCreated(@Nullable Bundle savedInstanceState) {\n        super.onActivityCreated(savedInstanceState);\n\n        Toolbar tb = (Toolbar) getActivity().findViewById(R.id.toolbar_clicked_board);\n        ((AppCompatActivity) getActivity()).setSupportActionBar(tb);\n        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(Html.fromHtml(\"<b>\" + dept + \"</b>\", 0));\n\n        loadingDialog.cancel();\n    }\n\n\n\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/hfad/gamo/NotificationFragment.java	(revision 956ac191e3bba6fb21332d0d2fece63c2fb883c4)
++++ app/src/main/java/com/hfad/gamo/NotificationFragment.java	(date 1608613561000)
+@@ -7,10 +7,12 @@
+ import androidx.appcompat.app.AppCompatActivity;
+ import androidx.appcompat.widget.Toolbar;
+ import androidx.fragment.app.Fragment;
++import androidx.fragment.app.FragmentManager;
+ import androidx.recyclerview.widget.LinearLayoutManager;
+ import androidx.recyclerview.widget.RecyclerView;
+ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+ 
++import android.os.Handler;
+ import android.text.Html;
+ import android.util.Log;
+ import android.view.LayoutInflater;
+@@ -52,42 +54,42 @@
+     private VolleyForHttpMethod volley;
+     private String url;
+ 
+-    private int one = 0;
++    private int page = 0;
+ 
++    private static String serverAddress = "192.168.50.146";
++//    private static String serverAddress = "112.148.161.36";
+ 
+     private LoadingDialog loadingDialog;
+ 
++
++
++    public static NotificationFragment newInstance(String page) {
++        NotificationFragment fragment = new NotificationFragment();
++        Bundle args = new Bundle();
++        args.putString("noti_page", page);
++        fragment.setArguments(args);
++        return fragment;
++    }
++
+     @Override
+     public void onCreate(@Nullable Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+ 
+         prefs = this.getContext().getSharedPreferences(appConstantPreferences, MODE_PRIVATE);
+         dept = prefs.getString("department", null);
++//        int page = 0;
++
+ 
+ 
+         volley = new VolleyForHttpMethod(Volley.newRequestQueue(this.getContext()));
+-        url = "http://112.148.161.36:17394/notice/read/0/컴퓨터공학과";
++        getAllDataFromDB(page);
++//        url = "http://" + serverAddress + ":17394/notice/read/" + page + "/" + dept;
++//        url = "http://112.148.161.36:17394/notice/read/0/컴퓨터공학과";
+ 
+-        volley.getJSONArray(url, new Response.Listener<JSONArray>() {
+-            @Override
+-            public void onResponse(JSONArray response) {
+-                for (int i = 0; i < response.length(); i++) {
+-                    try {
+-                        responseJSONObject = response.getJSONObject(i);
+-                        responseJSONArray.put(responseJSONObject);
+-                    } catch (JSONException e) {
+-                        e.printStackTrace();
+-                    }
+-                }
+-                adapter.notifyDataSetChanged();
+-            }
+-        });
+ 
+ 
++    }
+ 
+-
+-
+-    }
+ 
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container,
+@@ -173,6 +175,8 @@
+             }
+         });
+ 
++
++//        검색 취소
+         cancel_button_notification.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -182,7 +186,8 @@
+                     responseJSONArray.remove(--current_length);
+                 }
+ 
+-                url = "http://112.148.161.36:17394/notice/read/0/컴퓨터공학과";
++//                url = "http://112.148.161.36:17394/notice/read/0/컴퓨터공학과";
++                url = "http://" + serverAddress + ":17394/notice/read/0/컴퓨터공학과";
+ 
+                 volley.getJSONArray(url, new Response.Listener<JSONArray>() {
+                     @Override
+@@ -212,6 +217,30 @@
+             }
+         });
+ 
++
++//        맨 아래에서 위로 당기면 게시물 더보기
++        adapter.setOnLoadMoreListener(new Notification_RecyclerAdapter.OnLoadMoreListener() {
++            @Override
++            public void onLoadMore() {
++                if(responseJSONArray.length() <= 100) {         // 게시물 개수 제한
++                    responseJSONArray.put(null);
++                    adapter.notifyItemInserted(responseJSONArray.length() - 1);
++                    new Handler().postDelayed(new Runnable() {
++                        @Override
++                        public void run() {
++                            responseJSONArray.remove(responseJSONArray.length() -1);
++                            adapter.notifyItemRemoved(responseJSONArray.length());
++
++                            page++;
++                            getAllDataFromDB(page);
++                            adapter.notifyDataSetChanged();
++                        }
++                    }, 2000);
++                }
++            }
++        });
++
++
+         return view;
+     }
+ 
+@@ -226,6 +255,34 @@
+         loadingDialog.cancel();
+     }
+ 
++    @Override
++    public void onStart() {
++        super.onStart();
++        Log.d("NotificationFragment ::", "onStart");
++        responseJSONArray = new JSONArray();
++        page = 0;
++        getAllDataFromDB(page);
++    }
++
++    private void getAllDataFromDB(int page) {
++
++        url = "http://" + serverAddress + ":17394/notice/read/" + page + "/" + dept;
++        volley.getJSONArray(url, new Response.Listener<JSONArray>() {
++            @Override
++            public void onResponse(JSONArray response) {
++                for (int i = 0; i < response.length(); i++) {
++                    try {
++                        responseJSONObject = response.getJSONObject(i);
++                        responseJSONArray.put(responseJSONObject);
++                    } catch (JSONException e) {
++                        e.printStackTrace();
++                    }
++                }
++                adapter.notifyDataSetChanged();
++                adapter.setLoaded();
++            }
++        });
++    }
+ 
+ 
+ 

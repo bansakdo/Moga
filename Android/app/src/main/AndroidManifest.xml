@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gachon.moga">
+    package="com.univ.moga">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".board.MogaApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_main"
         android:label="@string/app_name"
@@ -13,27 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.gachon.moga.AgreementTermsActivity" />
-        <activity android:name="com.gachon.moga.board.WritingUpdateActivity" />
-        <activity android:name="com.gachon.moga.NoticeDetailActivity" />
-        <activity android:name="com.gachon.moga.board.WritingNestedReplyActivity" />
-        <activity android:name="com.gachon.moga.StartGuideActivity" />
-        <activity android:name="com.gachon.moga.board.PostingActivity" />
-        <activity android:name="com.gachon.moga.board.SearchActivity" />
-
-        <activity android:name=".board.ui.board.BoardActivity"/>
-        <activity android:name=".board.ui.search.SearchActivity"/>
-        <activity android:name=".board.ui.writing.posting.PostingWritingActivity"/>
-        <activity android:name=".board.ui.posting.PostingActivity"/>
-
+        <activity android:name="com.univ.moga.AgreementTermsActivity" />
+        <activity android:name="com.univ.moga.ClickedBoard.WritingUpdateActivity" />
+        <activity android:name="com.univ.moga.NoticeDetailActivity" />
+        <activity android:name="com.univ.moga.ClickedBoard.WritingNestedReplyActivity" />
+        <activity android:name="com.univ.moga.StartGuideActivity" />
+        <activity android:name="com.univ.moga.ClickedBoard.ClickedPostingActivity" />
+        <activity android:name="com.univ.moga.ClickedBoard.SearchActivity" />
         <activity
-            android:name="com.gachon.moga.board.WritingActivity"
+            android:name="com.univ.moga.ClickedBoard.WritingActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name="com.gachon.moga.board.BoardActivity" />
-        <activity android:name="com.gachon.moga.MainActivity" />
-        <activity android:name="com.gachon.moga.LoginActivity" />
+        <activity android:name="com.univ.moga.ClickedBoard.ClickedBoardActivity" />
+        <activity android:name="com.univ.moga.MainActivity" />
+        <activity android:name="com.univ.moga.LoginActivity" />
         <activity
-            android:name="com.gachon.moga.SplashActivity"
+            android:name="com.univ.moga.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -48,7 +41,7 @@
             android:required="false" />
 
         <service
-            android:name="com.gachon.moga.MyFirebaseMessagingService"
+            android:name="com.univ.moga.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

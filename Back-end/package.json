@@ -1,7 +1,7 @@
 {
   "name": "moga-back-end",
   "version": "1.0.0",
-  "description": "",
+  "description": "![1-2_512](https://user-images.githubusercontent.com/53803882/104343381-37a82880-553f-11eb-8acd-2f874fa70995.png)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "cheerio": "1.0.0-rc.3",
     "date-and-time": "0.14.2",
     "dotenv": "8.2.0",

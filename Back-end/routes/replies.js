@@ -16,7 +16,7 @@ router.get("/subject/:post_no", repliesController.readReply)
 
 // 댓글 삭제
 router.delete("/subject/:bundle_id", repliesController.deleteReply)
-
+// 대댓글 삭제
 router.delete("/subject/reply/:reply_no", repliesController.deleteRereply)
 
 // REPLY UPDATE - 댓글 수정 (불가)

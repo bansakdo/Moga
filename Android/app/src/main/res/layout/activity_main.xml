@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animationCache="false"
-    tools:context="com.gachon.moga.MainActivity" >
+    tools:context="com.univ.moga.MainActivity" >
 
     <FrameLayout
         android:id="@+id/fragment"

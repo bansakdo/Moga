@@ -62,7 +62,7 @@
                             android:layout_centerVertical="true"
                             android:gravity="center"
                             android:textColor="@color/gray2"
-                            android:id="@+id/gachon"
+                            android:id="@+id/univ"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
 
@@ -95,7 +95,7 @@
                             android:layout_centerVertical="true"
                             android:gravity="center"
                             android:textColor="@color/gray2"
-                            android:id="@+id/gachonname"
+                            android:id="@+id/univ_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
 

@@ -118,18 +118,3 @@ exports.readMyBoardList = (req, res) => {
         }
     })
 }
-
-/*
-// BOARD READ - 과목게시판 내 선택한 글 상세보기
-// 클라이언트에서 post_no을 전달하면 해당 튜플을 전송한다.
-exports.readDetailBoard = (req, res) => {
-    let post_no = req.params.id
-    
-    boardModel.readDetailBoard(post_no, (result) => {
-        if (result) {
-            console.log("board select completed")
-            res.send(result)
-        }
-    })
-}
-*/

@@ -231,7 +231,7 @@ const getNoticeApart = (major, pageNum, callback) => {
     noticesModel.getNotice(major, result => {
         let notice_url = ''
         switch(major) {
-            case "가천대학교":
+            case "OO대학교":
                 notice_url = result[0].notice_url + "&pageNum=" + pageNum
             case "소프트웨어":
             case "AI":
@@ -271,7 +271,7 @@ const getNoticeSearchListApart = (major, word, pageNum, callback) => {
     noticesModel.getNotice(major, result => {
         let notice_url = ''
         switch(major) {
-            case "가천대학교":
+            case "OO대학교":
                 notice_url = result[0].notice_url + "&pageNum=" + pageNum + "&searchopt=title&searchword=" + word;
                 break;
             case "소프트웨어":
@@ -312,7 +312,7 @@ const getNoticeUrlApart = (major, board_no, callback) => {
     noticesModel.getNotice(major, result => {
         let notice_url = ''
         switch(major) {
-            case "가천대학교":
+            case "OO대학교":
                 notice_url = result[0].notice_url + "&mode=view&board_no=" + board_no;
                 break;
             case "소프트웨어":
@@ -365,7 +365,7 @@ const getNoticeApartList = async (major, url, pageNum, callback) => {
     const page = new Array();
 
     switch(major) {
-        case "가천대학교":
+        case "OO대학교":
             try {
                 $('.boardlist table tbody tr').each((index, data) => {
                     const td = $(data).find('td');
@@ -865,7 +865,7 @@ const getNoticeApartList = async (major, url, pageNum, callback) => {
 const getNoticePostingApart = (major, board_no, callback) => {
     noticesModel.getNotice(major, async result => {
         switch(major) {
-            case "가천대학교":
+            case "OO대학교":
                 try {
                     url = result[0].notice_url + "&mode=view&board_no=" + board_no;
                     data = await getClickedPosting(url)

@@ -1,4 +1,4 @@
-
+// 강의 주소 DB화
 
 const axios = require('axios');
 const mysql = require('mysql');
@@ -38,11 +38,10 @@ db.query(select_sql, async (err, results) => {
             const hakgi = 20
             p_subject_cd = elem.subject_code
             p_member_no = elem.subject_member_code
-            const url = "http://sg.gachon.ac.kr/main?attribute=lectPlan&year="+year+"&hakgi="+hakgi+"&p_subject_cd="+p_subject_cd+"&p_member_no="+p_member_no+"&lang=ko"
+            const url = "http://sg.univ.ac.kr/main?attribute=lectPlan&year="+year+"&hakgi="+hakgi+"&p_subject_cd="+p_subject_cd+"&p_member_no="+p_member_no+"&lang=ko"
 
             try {
                 await getWebEx(url).then(webex_url => {
-                    // console.log(webex_url);
                     const update_sql = "UPDATE SUBJECT SET subject_url=? WHERE subject_code=?"
                     
                     db.query(update_sql, [webex_url, p_subject_cd], (err, result) => {

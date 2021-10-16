@@ -1,25 +1,15 @@
-// 테이블 생성
-/*
-    CREATE TABLE `SUBJECT` (
-    `subject_no` int NOT NULL AUTO_INCREMENT,
-    `subject_code` varchar(30) NOT NULL,
-    `subject_name` varchar(70) NOT NULL,
-    `major_names` varchar(100) NOT NULL,
-    PRIMARY KEY (`subject_no`),
-    UNIQUE KEY `subject_code_UNIQUE` (`subject_code`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=7128 DEFAULT CHARSET=utf8;
-*/
+// 강의 정보 및 교수 정보 DB화
 
 const axios = require('axios');
 const mysql = require('mysql');
 const dotenv = require('dotenv').config({ path: './../.env' });
-const cheerio = require('cheerio')
+
 // DB 연결
 const mysqlConObj = require('../config/mysql');
 const db = mysqlConObj.init();
 mysqlConObj.open(db);
 
-// getData : 가천대 시간표 조회에서 데이터 가져오기
+// getData : 대학교 시간표 조회에서 데이터 가져오기
 async function getData(url) {
     try {
         console.log(url);
@@ -116,8 +106,8 @@ const pharmacy_1=["Y53110","약학과", ""]
 const medical_1=["Y55110","의예과", ""]
 const medical_2=["Y55120","의학과", ""]
 
-// 가천리버럴아츠칼리지
-const liberal_1=["CM3150", "가천리버럴아츠칼리지", ""]
+// 리버럴아츠칼리지
+const liberal_1=["CM3150", "리버럴아츠칼리지", ""]
 const liberal_2=["CM4130", "미디어 컴퓨터 융합 연계 전공", ""]
 const liberal_3=["CM4170", "인지과학 부전공", ""]
 const liberal_4=["CM4180", "디지털엔터테인먼트 부전공", ""]
@@ -206,12 +196,13 @@ const major = [
     },
 ]
 
-for(i=0; i<=14; i++) {
-// for(i=14; i<=14; i++) {
-    
-    // console.log(i, subject[i].name);
+const year = 2020
+const hakgi = 20
 
-    let dataObject = new Array()
+for(i=0; i<=14; i++) {
+
+    let subObject = new Array()
+    let proObject = new Array()
 
     for(j=1; j<=major[i].size; j++) {
         let p_maj_cd = eval(major[i].name+j)[0]
@@ -224,21 +215,36 @@ for(i=0; i<=14; i++) {
 
         console.log(p_maj_cd, major_names);
 
-        const url = "http://sg.gachon.ac.kr/main?attribute=timeTableJson&lang=ko&year=2020&hakgi=20&menu=1&p_isu_cd="+p_isu_cd+"&p_univ_cd=CS0000&p_maj_cd="+p_maj_cd+"&p_cor_cd="+p_cor_cd+"&p_gwamok_nm=%EA%B3%BC%EB%AA%A9%EB%AA%85%EC%9D%84%202%EC%9E%90%EB%A6%AC%20%EC%9D%B4%EC%83%81%20%EC%9E%85%EB%A0%A5%ED%95%98%EC%84%B8%EC%9A%94.&p_p_hakgi=&p_group_cd=&lang=ko&initYn=Y&fake=Sat%20Dec%2005%202020%2002:14:34%20GMT+0900%20(%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD%20%ED%91%9C%EC%A4%80%EC%8B%9C)&_search=false&nd=1607102074769&rows=-1&page=1&sidx=&sord=asc"
+        const url = "http://sg.gachon.ac.kr/main?attribute=timeTableJson&lang=ko&year="+year+"&hakgi="+hakgi+"&menu=1&p_isu_cd="+p_isu_cd+"&p_univ_cd=CS0000&p_maj_cd="+p_maj_cd+"&p_cor_cd="+p_cor_cd+"&lang=ko&initYn=Y&_search=false&nd=1607102074769&rows=-1&page=1&sidx=&sord=asc"
         getData(url)
         .then(result => {
             result.data.rows.map(data => {
-                dataObject.push({
+                subObject.push({
                     "subject_code": data.subject_cd,
                     "subject_name": data.subject_nm_kor,
                     "major_names": major_names,
                     "subject_member_code" : data.member_no
                 })
+                proObject.push({
+                    "professor_code": data.member_no,
+                    "professor_name": data.prof_nm,
+                    "major_names": major_names
+                })
             })
 
-            const sql = "INSERT INTO SUBJECT SET ?"
-            dataObject.map(data => {
-                db.query(sql, data, (err, result) => {
+
+            const subSql = "INSERT INTO SUBJECT SET ?"
+            subObject.map(data => {
+                db.query(subSql, data, (err, result) => {
+                    if(err) console.log("insert err : ", err);
+                    else console.log("insert result : ", result);
+                })
+            })
+
+
+            const proSql = "INSERT INTO PROFESSOR SET ?"
+            proObject.map(data => {
+                db.query(proSql, data, (err, result) => {
                     if(err) console.log("insert err : ", err);
                     else console.log("insert result : ", result);
                 })
